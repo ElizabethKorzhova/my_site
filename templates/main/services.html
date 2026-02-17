@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Services {% endblock %}
+{% block content %}
+    <section>
+        <h2>Our services</h2>
+        <p>Explore our services below</p>
+        {% if services %}
+            <span> There are {{ services|slice:3|length }} of {{ services|length }} services shown right now</span>
+            <ul>
+                {% for service in services|slice:3 %}
+                    <li>
+                        <h4>{{ service.service_title }}</h4>
+                        <p>{{ service.service_description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>There are no services right now. Check later, please</p>
+        {% endif %}
+        <span>Last update at {{ date|date:"Y-m-d" }}</span>
+    </section>
+{% endblock %}

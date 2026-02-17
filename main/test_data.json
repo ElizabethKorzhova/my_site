@@ -1,0 +1,42 @@
+{
+  "company_name": "Tech Solutions",
+  "greeting_text": "Welcome to Tech Solutions – your partner in innovative software!",
+  "company_description": "Tech Solutions specializes in developing cutting-edge web and mobile applications. We help businesses automate processes, increase efficiency, and deliver exceptional user experiences.",
+  "phone": "+380 99-111-11-11",
+  "email": "email@gmail.com",
+  "address": "1, Khreshchatyk Street, Kyiv, Ukraine",
+  "services": [
+    {
+      "service_title": "Web Development",
+      "service_description": "Building responsive and scalable websites tailored to your business needs"
+    },
+    {
+      "service_title": "Mobile Apps",
+      "service_description": "Creating intuitive mobile applications for iOS and Android platforms."
+    },
+    {
+      "service_title": "UI/UX Design",
+      "service_description": "Designing user-friendly interfaces that enhance user experience and engagement."
+    },
+    {
+      "service_title": "E-commerce Solutions",
+      "service_description": "Developing secure and efficient online stores to boost your sales."
+    },
+    {
+      "service_title": "SEO & Marketing",
+      "service_description": "Optimizing your website for search engines and improving online visibility."
+    },
+    {
+      "service_title": "Cloud Integration",
+      "service_description": "Implementing cloud services for storage, computing, and collaboration."
+    },
+    {
+      "service_title": "IT Consulting",
+      "service_description": "Providing expert advice to improve your IT infrastructure and workflows."
+    },
+    {
+      "service_title": "Maintenance & Support",
+      "service_description": "Offering ongoing technical support and website/app maintenance."
+    }
+  ]
+}

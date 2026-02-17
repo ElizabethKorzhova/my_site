@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href={% url 'main_home' %}>home</a></li>
+            <li><a href={% url 'main_about' %}>about</a></li>
+            <li><a href={% url 'main_contact' %}>contact</a></li>
+            <li><a href={% url 'main_services' %}>service</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %} {% endblock %}
+</main>
+<footer>
+    <ul>
+        <li>
+            <a href="#">Privacy Policy</a>
+        </li>
+        <li>
+            <a href="#">Terms of Service</a>
+        </li>
+        <li>&copy; 2026. All rights reserved.</li>
+    </ul>
+</footer>
+</body>
+</html>
