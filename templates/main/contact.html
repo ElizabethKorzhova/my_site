@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Contacts {% endblock %}
+{% block content %}
+    <address>
+        <h2>Contact us</h2>
+        <p>You can contact us using the following information</p>
+        <ul>
+            <li>
+                <a href="https://maps.google.com/?q={{ address }}">
+                    Address: {{ address }}
+                </a>
+            </li>
+            <li>
+                <a href="tel:{{ phone }}">Phone: {{ phone }}</a>
+            </li>
+            <li>
+                <a href="mailto:{{ email }}">Email: {{ email }}</a>
+            </li>
+        </ul>
+    </address>
+{% endblock %}

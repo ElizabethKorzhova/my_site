@@ -19,5 +19,6 @@ from django.urls import path, include, URLPattern, URLResolver
 
 urlpatterns: list[URLPattern | URLResolver] = [
     path("admin/", admin.site.urls),
+    path("main/", include("main.urls")),
     path("", include("home.urls")),
 ]
