@@ -1,0 +1,7 @@
+<li class="col {% if not is_footer_link %} text-secondary {% endif %}">
+    {% if is_footer_link %}
+        <a href="{{ footer_link }}" class="link-warning text-decoration-none text-secondary">{{ footer_link_name }}</a>
+    {% else %}
+        {{ footer_item_data }}
+    {% endif %}
+</li>

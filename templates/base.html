@@ -7,43 +7,12 @@
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-dark text-light">
-<header class="border-bottom border-secondary-subtle">
-    <nav class="navbar navbar-expand justify-content-center py-4">
-        <ul class="navbar-nav gap-4 text-uppercase fw-semibold">
-            <li class="nav-item">
-                <a class="nav-link link-warning text-secondary" href="{% url 'main_home' %}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-warning text-secondary" href="{% url 'main_about' %}">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-warning text-secondary" href="{% url 'main_contact' %}">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-warning text-secondary" href="{% url 'main_services' %}">Services</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+{% include "main/components/header.html" %}
 <main class="flex-grow-1 d-flex align-items-start py-5">
     <div class="container">
         {% block content %}{% endblock %}
     </div>
 </main>
-<footer class="mt-auto border-top border-secondary-subtle py-4">
-    <div class="container text-center">
-        <ul class="row list-unstyled">
-            <li class="col">
-                <a href="#" class="link-warning text-decoration-none text-secondary">Privacy Policy</a>
-            </li>
-            <li class="col">
-                <a href="#" class="link-warning text-decoration-none text-secondary">Terms of Service</a>
-            </li>
-            <li class="col text-secondary">
-                &copy; 2026. All rights reserved.
-            </li>
-        </ul>
-    </div>
-</footer>
+{% include "main/components/footer.html" %}
 </body>
 </html>

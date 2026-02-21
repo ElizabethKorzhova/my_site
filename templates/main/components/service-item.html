@@ -1,0 +1,14 @@
+<li class="col">
+    <div class="card h-100 p-3 shadow-sm">
+        <h5 class="fw-bold text-warning">
+            {{ service.service_title|upper }}
+        </h5>
+        <p class="mb-2">
+            {{ service.service_description|truncatechars:100|default:"No description"|safe }}
+        </p>
+        <span class="text-secondary">
+            Appointment is available:
+            {{ service.is_service_appointment|yesno:"yes,no" }}
+        </span>
+    </div>
+</li>

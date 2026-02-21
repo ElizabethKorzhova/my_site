@@ -1,0 +1,16 @@
+<form method="get" class="d-flex justify-content-center mb-5">
+    <div class="input-group w-50">
+        <label for="search"></label>
+        <input id="search"
+               type="search"
+               name="q"
+               class="form-control"
+               placeholder="Search service..."
+               {% if no_services %}disabled{% endif %}>
+        <button class="btn btn-warning"
+                type="submit"
+                {% if no_services %}disabled{% endif %}>
+            Search
+        </button>
+    </div>
+</form>

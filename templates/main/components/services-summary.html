@@ -1,0 +1,11 @@
+<p class="text-secondary mb-4 {% if is_date %} d-block mt-5 {% endif %}">
+    {% if not search_performed and not is_date %}
+        Showing {{ services|length }} of {{ all_services_count }}
+        service{{ all_services_count|pluralize }}
+    {% elif is_date %}
+        Last update:
+        {{ date|date:"Y-m-d"|default:"Not available" }}
+    {% else %}
+        Found {{ services|length }} service{{ services|length|pluralize }}
+    {% endif %}
+</p>
