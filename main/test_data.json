@@ -8,7 +8,8 @@
   "services": [
     {
       "service_title": "Web Development",
-      "service_description": "Building responsive and scalable websites tailored to your business needs"
+      "service_description": "Building responsive and scalable websites tailored to your business needs",
+      "is_service_appointment": "yes"
     },
     {
       "service_title": "Mobile Apps",
@@ -16,7 +17,8 @@
     },
     {
       "service_title": "UI/UX Design",
-      "service_description": "Designing user-friendly interfaces that enhance user experience and engagement."
+      "service_description": "Designing user-friendly interfaces that enhance user experience and engagement.",
+      "is_service_appointment": "yes"
     },
     {
       "service_title": "E-commerce Solutions",
@@ -28,15 +30,18 @@
     },
     {
       "service_title": "Cloud Integration",
-      "service_description": "Implementing cloud services for storage, computing, and collaboration."
+      "service_description": "Implementing cloud services for storage, computing, and collaboration.",
+      "is_service_appointment": "yes"
     },
     {
       "service_title": "IT Consulting",
-      "service_description": "Providing expert advice to improve your IT infrastructure and workflows."
+      "service_description": "Providing expert advice to improve your IT infrastructure and workflows.",
+      "is_service_appointment": "yes"
     },
     {
       "service_title": "Maintenance & Support",
       "service_description": "Offering ongoing technical support and website/app maintenance."
     }
-  ]
+  ],
+  "last_update_date": "2026-02-20"
 }

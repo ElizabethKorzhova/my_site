@@ -1,35 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <title>
-        {% block title %} {% endblock %}
-    </title>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href={% url 'main_home' %}>home</a></li>
-            <li><a href={% url 'main_about' %}>about</a></li>
-            <li><a href={% url 'main_contact' %}>contact</a></li>
-            <li><a href={% url 'main_services' %}>service</a></li>
+<body class="d-flex flex-column min-vh-100 bg-dark text-light">
+<header class="border-bottom border-secondary-subtle">
+    <nav class="navbar navbar-expand justify-content-center py-4">
+        <ul class="navbar-nav gap-4 text-uppercase fw-semibold">
+            <li class="nav-item">
+                <a class="nav-link link-warning text-secondary" href="{% url 'main_home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-warning text-secondary" href="{% url 'main_about' %}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-warning text-secondary" href="{% url 'main_contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-warning text-secondary" href="{% url 'main_services' %}">Services</a>
+            </li>
         </ul>
     </nav>
 </header>
-<main>
-    {% block content %} {% endblock %}
+<main class="flex-grow-1 d-flex align-items-start py-5">
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </main>
-<footer>
-    <ul>
-        <li>
-            <a href="#">Privacy Policy</a>
-        </li>
-        <li>
-            <a href="#">Terms of Service</a>
-        </li>
-        <li>&copy; 2026. All rights reserved.</li>
-    </ul>
+<footer class="mt-auto border-top border-secondary-subtle py-4">
+    <div class="container text-center">
+        <ul class="row list-unstyled">
+            <li class="col">
+                <a href="#" class="link-warning text-decoration-none text-secondary">Privacy Policy</a>
+            </li>
+            <li class="col">
+                <a href="#" class="link-warning text-decoration-none text-secondary">Terms of Service</a>
+            </li>
+            <li class="col text-secondary">
+                &copy; 2026. All rights reserved.
+            </li>
+        </ul>
+    </div>
 </footer>
 </body>
 </html>

@@ -5,7 +5,9 @@ import datetime
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from django.views import View
-from .models import DATA
+
+from .data import DATA
+from .types import ServiceType
 
 
 def home_view(request: HttpRequest) -> HttpResponse:
@@ -38,8 +40,33 @@ class ServiceView(View):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """Method to render service page in main app of my_site project."""
-        context_services: dict[str, list[dict[str, str]] | datetime.datetime] = {
-            "services": DATA["services"],
-            "date": datetime.datetime.now()
+        query: str | None = request.GET.get("q")
+        services: list[ServiceType] = DATA["services"]
+
+        all_services_count = len(services)
+        no_services = False
+        search_performed = False
+
+        if not services:
+            no_services = True
+
+        elif query:
+            search_performed = True
+            services = [
+                service for service in services if
+                query.lower() in service["service_title"].lower() or query.lower() in service[
+                    "service_description"].lower()
+            ]
+
+        if not search_performed:
+            services = services if request.GET.get("show") == "all" else services[:3]
+
+        context_services: dict[str, list[dict[str, str]] | datetime.datetime | bool] = {
+            "services": services,
+            "all_services_count": all_services_count,
+            "date": datetime.datetime.now(),
+            "no_services": no_services,
+            "search_performed": search_performed
         }
+
         return render(request, "main/services.html", context_services)
