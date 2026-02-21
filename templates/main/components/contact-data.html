@@ -1,0 +1,5 @@
+<ul class="mx-auto text-center list-unstyled" style="max-width: 44rem;">
+    {% include "main/components/contact-item.html" with contact_name="Address" contact_link="https://maps.google.com/?q="|add:address contact_data=address %}
+    {% include "main/components/contact-item.html" with contact_name="Phone" contact_link="tel:"|add:phone contact_data=phone %}
+    {% include "main/components/contact-item.html" with contact_name="Email" contact_link="mailto:"|add:email contact_data=email %}
+</ul>

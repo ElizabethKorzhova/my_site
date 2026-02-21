@@ -1,0 +1,10 @@
+<header class="border-bottom border-secondary-subtle">
+    <nav class="navbar navbar-expand justify-content-center py-4">
+        <ul class="navbar-nav gap-4 text-uppercase fw-semibold">
+            {% include "main/components/header-item.html" with route_name="main_home" page_name="Home" %}
+            {% include "main/components/header-item.html" with route_name="main_about" page_name="About" %}
+            {% include "main/components/header-item.html" with route_name="main_contact" page_name="Contact" %}
+            {% include "main/components/header-item.html" with route_name="main_services" page_name="Services" %}
+        </ul>
+    </nav>
+</header>

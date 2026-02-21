@@ -12,13 +12,13 @@ from .types import ServiceType
 
 def home_view(request: HttpRequest) -> HttpResponse:
     """View function for home page in main app of my_site project."""
-    return render(request, "main/home.html",
+    return render(request, "main/pages/home.html",
                   {"company_name": DATA["company_name"], "greeting_text": DATA["greeting_text"], })
 
 
 def about_view(request: HttpRequest) -> HttpResponse:
     """View function for home page in main app of my_site project."""
-    return render(request, "main/about.html",
+    return render(request, "main/pages/about.html",
                   {"company_description": DATA["company_description"]})
 
 
@@ -32,7 +32,7 @@ class ContactView(View):
             "phone": DATA["phone"],
             "email": DATA["email"]
         }
-        return render(request, "main/contact.html", context_contacts)
+        return render(request, "main/pages/contact.html", context_contacts)
 
 
 class ServiceView(View):
@@ -64,9 +64,9 @@ class ServiceView(View):
         context_services: dict[str, list[dict[str, str]] | datetime.datetime | bool] = {
             "services": services,
             "all_services_count": all_services_count,
-            "date": datetime.datetime.now(),
+            "date": datetime.datetime.fromisoformat((DATA["last_update_date"])),
             "no_services": no_services,
-            "search_performed": search_performed
+            "search_performed": search_performed,
         }
 
-        return render(request, "main/services.html", context_services)
+        return render(request, "main/pages/services.html", context_services)

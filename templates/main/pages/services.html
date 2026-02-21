@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Services {% endblock %}
+{% block content %}
+    <section class="text-center py-5">
+        {% include "main/components/page-title.html" with page_name="Our services" %}
+        {% include "main/components/page-description.html" with page_description="Explore our services below:" %}
+        {% include "main/components/search-form.html" %}
+        {% if services %}
+            {% include "main/components/services-summary.html" %}
+            {% include "main/components/services-list.html" %}
+            {% include "main/components/show-button.html" %}
+        {% elif no_services %}
+            {% include "main/components/service-alert-message.html" with message="There are no services right now. Check later please." %}
+        {% else %}
+            {% include "main/components/service-alert-message.html" with not_found=True message="No search results found." %}
+        {% endif %}
+        {% include "main/components/services-summary.html" with is_date=True %}
+    </section>
+{% endblock %}

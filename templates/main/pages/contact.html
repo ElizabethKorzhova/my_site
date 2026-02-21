@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} Contacts {% endblock %}
+{% block content %}
+    <section class="text-center py-5">
+        {% include "main/components/page-title.html" with page_name="Contact Us" %}
+        {% include "main/components/page-description.html" with page_description="You can contact us using the information below" %}
+        {% include "main/components/contact-data.html" %}
+    </section>
+{% endblock %}

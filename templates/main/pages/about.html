@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %} About us {% endblock %}
+{% block content %}
+    <section class="text-center py-5">
+        {% include "main/components/page-title.html" with page_name="About Us" %}
+        {% include "main/components/page-description.html" with page_description=company_description %}
+    </section>
+{% endblock %}
