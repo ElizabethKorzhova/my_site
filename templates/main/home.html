@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Home - {{ company_name }} {% endblock %}
 {% block content %}
-    <section>
-        <h1>{{ company_name }}</h1>
-        <p>{{ greeting_text }}</p>
+    <section class="text-center py-5">
+        <h1 class="display-4 fw-bold text-warning mb-4">{{ company_name }}</h1>
+        <p class="lead text-dark-emphasis">{{ greeting_text }}</p>
     </section>
 {% endblock %}

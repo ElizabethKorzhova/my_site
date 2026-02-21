@@ -1,22 +1,79 @@
 {% extends "base.html" %}
 {% block title %} Services {% endblock %}
 {% block content %}
-    <section>
-        <h2>Our services</h2>
-        <p>Explore our services below</p>
+    <section class="text-center py-5">
+        <h2 class="display-5 fw-bold text-warning text-uppercase mb-3">Our services</h2>
+        <p class="lead text-dark-emphasis mb-4">
+            Explore our services below
+        </p>
+        <form method="get" class="d-flex justify-content-center mb-5">
+            <div class="input-group w-50">
+                <label for="search"></label>
+                <input id="search"
+                       type="search"
+                       name="q"
+                       class="form-control"
+                       placeholder="Search service..."
+                       {% if no_services %}disabled{% endif %}>
+                <button class="btn btn-warning"
+                        type="submit"
+                        {% if no_services %}disabled{% endif %}>
+                    Search
+                </button>
+            </div>
+        </form>
         {% if services %}
-            <span> There are {{ services|slice:3|length }} of {{ services|length }} services shown right now</span>
-            <ul>
-                {% for service in services|slice:3 %}
-                    <li>
-                        <h4>{{ service.service_title }}</h4>
-                        <p>{{ service.service_description }}</p>
+            {% if not search_performed %}
+                <p class="text-secondary mb-4">
+                    Showing {{ services|length }} of {{ all_services_count }}
+                    service{{ all_services_count|pluralize }}
+                </p>
+            {% else %}
+                <p class="text-secondary mb-4">
+                    Found {{ services|length }} service{{ services|length|pluralize }}
+                </p>
+            {% endif %}
+            <ul class="row row-cols-1 row-cols-md-3 g-4 list-unstyled">
+                {% for service in services %}
+                    <li class="col">
+                        <div class="card h-100 p-3 shadow-sm">
+                            <h5 class="fw-bold text-warning">
+                                {{ service.service_title|upper }}
+                            </h5>
+                            <p class="mb-2">
+                                {{ service.service_description|truncatechars:100|default:"No description"|safe }}
+                            </p>
+                            <small class="text-secondary">
+                                Appointment is available:
+                                {{ service.is_service_appointment|yesno:"yes,no" }}
+                            </small>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>
+            <div class="mt-4">
+                {% if all_services_count == services|length and all_services_count > 3 and not search_performed %}
+                    <a href="?" class="btn btn-outline-warning">
+                        Show less
+                    </a>
+                {% elif all_services_count > 3 and not search_performed %}
+                    <a href="?show=all" class="btn btn-warning">
+                        Show all services
+                    </a>
+                {% endif %}
+            </div>
+        {% elif no_services %}
+            <p class="alert alert-secondary mt-4">
+                There are no services right now. Check later please.
+            </p>
         {% else %}
-            <p>There are no services right now. Check later, please</p>
+            <p class="alert alert-danger mt-4">
+                No search results found.
+            </p>
         {% endif %}
-        <span>Last update at {{ date|date:"Y-m-d" }}</span>
+        <p class="d-block mt-5 text-secondary">
+            Last update:
+            {{ date|date:"Y-m-d"|default:"Not available" }}
+        </p>
     </section>
 {% endblock %}

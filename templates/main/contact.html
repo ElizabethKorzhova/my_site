@@ -1,21 +1,33 @@
 {% extends "base.html" %}
 {% block title %} Contacts {% endblock %}
 {% block content %}
-    <address>
-        <h2>Contact us</h2>
-        <p>You can contact us using the following information</p>
-        <ul>
-            <li>
-                <a href="https://maps.google.com/?q={{ address }}">
-                    Address: {{ address }}
+    <section class="text-center py-5">
+        <h2 class="display-5 fw-bold text-warning mb-4">Contact Us</h2>
+        <p class="lead text-dark-emphasis mb-5">
+            You can contact us using the information below
+        </p>
+        <ul class="mx-auto text-center list-unstyled" style="max-width: 44rem;">
+            <li class="mb-4">
+                <span class="text-uppercase small text-dark-emphasis fs-6">Address</span><br>
+                <a href="https://maps.google.com/?q={{ address }}"
+                   class="link-warning fw-semibold text-decoration-none text-secondary fw-bold">
+                    {{ address }}
                 </a>
             </li>
-            <li>
-                <a href="tel:{{ phone }}">Phone: {{ phone }}</a>
+            <li class="mb-4">
+                <span class="text-uppercase small text-dark-emphasis fs-6">Phone</span><br>
+                <a href="tel:{{ phone }}"
+                   class="link-warning fw-semibold text-decoration-none text-secondary fw-bold">
+                    {{ phone }}
+                </a>
             </li>
-            <li>
-                <a href="mailto:{{ email }}">Email: {{ email }}</a>
+            <li class="mb-0">
+                <span class="text-uppercase small text-dark-emphasis fs-6">Email</span><br>
+                <a href="mailto:{{ email }}"
+                   class="link-warning fw-semibold text-decoration-none text-secondary fw-bold">
+                    {{ email }}
+                </a>
             </li>
         </ul>
-    </address>
+    </section>
 {% endblock %}
