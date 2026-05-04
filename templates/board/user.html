@@ -1,0 +1,24 @@
+<section>
+    <a href="{% url 'board' %}">Back to board</a>
+    <h4>{{ user.user.username }}</h4>
+    <p>Phone: {{ user.phone }}</p>
+    <p>Address: {{ user.address }}</p>
+    <ul>
+        {% for ad in ads %}
+            <li>
+                <a href="{% url 'ad' ad.id %}">
+                    <h4>{{ ad.title }}</h4>
+                </a>
+                <p>{{ ad.get_short_description }}</p>
+                <p>{{ ad.created_at|date:"d M Y" }}</p>
+                <p>Price: {{ ad.price }}</p>
+                {% if ad.is_active %}
+                    <span>Active</span>
+                {% else %}
+                    <span>Inactive</span>
+                {% endif %}
+                <span>{{ ad.comments_count }} comments</span>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

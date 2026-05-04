@@ -1,0 +1,36 @@
+<section>
+    <p>There are {{ ads_count }} ads</p>
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="?category={{ category.id }}">
+                    <h4>{{ category.name }}</h4>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="?recent=true">Recent (last 30 days)</a>
+    <a href="?active=true">Show active ads</a>
+    <a href="{% url 'board' %}">All Ads</a>
+    <ul>
+        {% for ad in ads %}
+            <li>
+                <a href="{% url 'ad' ad.id %}">
+                    <h4>{{ ad.title }}</h4>
+                </a>
+                <p>Description: {{ ad.get_short_description }}</p>
+                <p>Price: {{ ad.price }}</p>
+                <a href="{% url 'user' ad.user.id %}">
+                    <p>Owner: {{ ad.user.user.username }}</p>
+                </a>
+                {% if ad.is_active %}
+                    <span>Active</span>
+                {% else %}
+                    <span>Inactive</span>
+                {% endif %}
+                <span>{{ ad.comments_count }} comments</span>
+
+            </li>
+        {% endfor %}
+    </ul>
+</section>
