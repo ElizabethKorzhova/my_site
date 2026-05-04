@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen bg-amber-50 text-mist-900 px-14 py-8">
+{% include "board/components/header.html" %}
+<main class="flex-grow py-12">
+    <div class="">
+        {% block content %}{% endblock %}
+    </div>
+</main>
+</body>
+</html>

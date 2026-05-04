@@ -1,36 +1,56 @@
-<section>
-    <p>There are {{ ads_count }} ads</p>
-    <ul>
-        {% for category in categories %}
-            <li>
-                <a href="?category={{ category.id }}">
-                    <h4>{{ category.name }}</h4>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="?recent=true">Recent (last 30 days)</a>
-    <a href="?active=true">Show active ads</a>
-    <a href="{% url 'board' %}">All Ads</a>
-    <ul>
-        {% for ad in ads %}
-            <li>
-                <a href="{% url 'ad' ad.id %}">
-                    <h4>{{ ad.title }}</h4>
-                </a>
-                <p>Description: {{ ad.get_short_description }}</p>
-                <p>Price: {{ ad.price }}</p>
-                <a href="{% url 'user' ad.user.id %}">
-                    <p>Owner: {{ ad.user.user.username }}</p>
-                </a>
-                {% if ad.is_active %}
-                    <span>Active</span>
-                {% else %}
-                    <span>Inactive</span>
-                {% endif %}
-                <span>{{ ad.comments_count }} comments</span>
+{% extends "board/base.html" %}
+{% block title %} Board {% endblock %}
+{% block content %}
+    <section>
+        <div class="flex justify-between items-baseline pb-6">
+            <h3 class="text-5xl font-black tracking-tighter italic">Board</h3>
+            <p class="font-medium text-gray-600">There are {{ ads_count }} ads</p>
+        </div>
 
-            </li>
-        {% endfor %}
-    </ul>
-</section>
+        <div class="flex flex-wrap items-center gap-6 mb-12 bg-amber-100/50 p-4 rounded-xl border border-amber-200">
+            <div class="flex gap-4">
+                <a href="?recent=true" class="font-bold text-amber-900 hover:underline">Recent (last 30 days)</a>
+                <a href="?active=true" class="font-bold text-amber-900 hover:underline">Show active ads</a>
+                <a href="{% url 'board' %}" class="font-bold text-amber-900 hover:underline">All Ads</a>
+            </div>
+            <div class="h-4 w-px bg-amber-300"></div>
+
+            <ul class="flex flex-wrap gap-2">
+                {% for category in categories %}
+                    <li>
+                        <a href="?category={{ category.id }}"
+                           class="px-3 py-1 bg-amber-200 text-amber-900 rounded text-xs font-bold uppercase tracking-widest hover:bg-amber-900 hover:text-white transition">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {% for ad in ads %}
+                <li class="group relative flex flex-col border-l-2 border-amber-950 pl-6 py-2">
+                    <div class="flex justify-between items-start mb-2">
+                        <a href="{% url 'ad' ad.id %}"
+                           class="text-2xl font-bold group-hover:text-amber-700 transition">
+                            <h5>{{ ad.title }}</h5>
+                        </a>
+                        <span class="text-xl font-black text-amber-900">${{ ad.price }}</span>
+                    </div>
+
+                    <p class="leading-relaxed mb-4">Description: {{ ad.get_short_description }}</p>
+                    <div class="mt-auto flex items-center justify-between text-xs font-bold uppercase tracking-wider text-amber-700">
+                        <div class="flex gap-4">
+                            <a href="{% url 'user' ad.user.id %}" class="hover:text-amber-950 underline">
+                                {{ ad.user.user.username }}
+                            </a>
+                            <span>{{ ad.comments_count }} comments</span>
+                        </div>
+                        {% if ad.is_active %}
+                            <span class="text-emerald-600">● Active</span>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
