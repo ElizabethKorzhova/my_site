@@ -1,0 +1,30 @@
+<section>
+    <a href="{% url 'board' %}">Back to board</a>
+    <h4>{{ ad.title }}</h4>
+    <p>Description: {{ ad.description }}</p>
+    <p>Price: {{ ad.price }}</p>
+    <p>Created: {{ ad.created_at|date:"f, d M Y" }}</p>
+    <p>Last updated: {{ ad.updated_at|date:"f, d M Y"  }}</p>
+    {% if ad.is_active %}
+        <span>Active</span>
+    {% else %}
+        <span>Inactive</span>
+    {% endif %}
+    <a href="{% url 'user' ad.user.id %}">
+        <p>Owner: {{ ad.user.user.username }}</p>
+    </a>
+    <p>Category: {{ ad.category }}</p>
+    <span>Total comments: {{ ad.comments.count }}</span>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <h4>{{ comment.content }}</h4>
+                <p>Created: {{ comment.created_at|date:"f, d M Y"  }}</p>
+                <a href="{% url 'user' ad.user.id %}">
+                    <p>Commenter: {{ comment.user.user.username }}</p>
+                </a>
+
+            </li>
+        {% endfor %}
+    </ul>
+</section>
