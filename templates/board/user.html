@@ -1,24 +1,46 @@
-<section>
-    <a href="{% url 'board' %}">Back to board</a>
-    <h4>{{ user.user.username }}</h4>
-    <p>Phone: {{ user.phone }}</p>
-    <p>Address: {{ user.address }}</p>
-    <ul>
-        {% for ad in ads %}
-            <li>
-                <a href="{% url 'ad' ad.id %}">
-                    <h4>{{ ad.title }}</h4>
-                </a>
-                <p>{{ ad.get_short_description }}</p>
-                <p>{{ ad.created_at|date:"d M Y" }}</p>
-                <p>Price: {{ ad.price }}</p>
-                {% if ad.is_active %}
-                    <span>Active</span>
-                {% else %}
-                    <span>Inactive</span>
-                {% endif %}
-                <span>{{ ad.comments_count }} comments</span>
-            </li>
-        {% endfor %}
-    </ul>
-</section>
+{% extends "board/base.html" %}
+{% block title %} {{ user.user.username }} {% endblock %}
+{% block content %}
+    <section>
+        <div class="py-4">
+            <h3 class="text-4xl font-black tracking-tighter italic uppercase mb-2">{{ user.user.username }}</h3>
+            <div class="flex gap-8 font-bold uppercase text-xs text-amber-800 tracking-widest">
+                <p>📍 {{ user.address }}</p>
+                <p>📞 {{ user.phone }}</p>
+            </div>
+        </div>
+
+        <h4 class="text-2xl font-black tracking-tighter uppercase mb-8 mt-8 pb-2">
+            User Ads
+        </h4>
+        <ul class="grid grid-cols-1 gap-10">
+            {% for ad in ads %}
+                <li class="group relative flex flex-col border-l-2 border-amber-950 pl-6 py-2">
+                    <div class="flex justify-between items-start mb-2">
+                        <a href="{% url 'ad' ad.id %}"
+                           class="text-2xl font-bold group-hover:text-amber-700 transition">
+                            <h5>{{ ad.title }}</h5>
+                        </a>
+                        <span class="text-xl font-black text-amber-900">${{ ad.price }}</span>
+                    </div>
+
+                    <p class="leading-relaxed mb-4 italic">
+                        {{ ad.get_short_description }}
+                    </p>
+
+                    <div class="mt-auto flex items-center justify-between text-xs font-bold uppercase tracking-wider text-amber-700">
+                        <div class="flex gap-4">
+                            <span>Posted: {{ ad.created_at|date:"d M Y" }}</span>
+                            <span>{{ ad.comments_count }} comments</span>
+                        </div>
+                        {% if ad.is_active %}
+                            <span class="text-emerald-600">● Active</span>
+                        {% else %}
+                            <span class="text-red-500">● Inactive</span>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
