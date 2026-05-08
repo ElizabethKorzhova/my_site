@@ -20,13 +20,21 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, URLPattern, URLResolver
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns: List[URLPattern | URLResolver] = [
     path("admin/", admin.site.urls),
     path("main/", include("main.urls")),
     path("board/", include("board.urls")),
-    path("users/", include("users.urls")),
+    path("books/api/", include("books.urls")),
+    path("api-auth/", include("rest_framework.urls")),
+    path("books/api/auth/token/", obtain_auth_token, name="api-token-auth"),
+    path("books/api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("books/api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path("books/api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
     path("", include("home.urls")),
+
 ]
 
 if settings.DEBUG:
