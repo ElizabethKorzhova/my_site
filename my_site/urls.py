@@ -16,6 +16,8 @@ Including another URLconf
 """
 from typing import List
 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, URLPattern, URLResolver
 
@@ -23,6 +25,9 @@ urlpatterns: List[URLPattern | URLResolver] = [
     path("admin/", admin.site.urls),
     path("main/", include("main.urls")),
     path("board/", include("board.urls")),
+    path("users/", include("users.urls")),
     path("", include("home.urls")),
-
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
