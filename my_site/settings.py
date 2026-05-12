@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "board",
     "users",
     "books",
+    "testing",
 ]
 
 REST_FRAMEWORK = {
