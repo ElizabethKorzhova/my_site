@@ -1,0 +1,20 @@
+{% load customization_tags %}
+<section>
+    <h3>Tasks</h3>
+    <h3>Global statistics</h3>
+    <p>All tasks: {{ global_tasks_count }}</p>
+    <p>Done tasks: {{ global_done_tasks_count }}</p>
+    <h2>Template tag</h2>
+    <p>Total tasks from custom tag: {% total_tasks_count %}</p>
+    <h5>Tasks list</h5>
+    {% for task in tasks %}
+        <div>
+            <h3>{{ task.title|uppercase_text }}</h3>
+            <p>Description: {{ task.description }}</p>
+            <p>Status: {{ task.status }}</p>
+            <p>Priority: {{ task.priority }}</p>
+        </div>
+    {% empty %}
+        <p>No tasks found.</p>
+    {% endfor %}
+</section>

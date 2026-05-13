@@ -1,0 +1,11 @@
+<section>
+    <h3>Users statistics</h3>
+    {% for user in users_statistics %}
+        <div>
+            <h4>{{ user.username }}</h4>
+            <p>Total tasks: {{ user.tasks_count }}</p>
+        </div>
+    {% empty %}
+        <p>No users found.</p>
+    {% endfor %}
+</section>
