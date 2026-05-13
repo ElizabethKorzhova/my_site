@@ -29,6 +29,7 @@ urlpatterns: List[URLPattern | URLResolver] = [
     path("board/", include("board.urls")),
     path("users/", include("users.urls")),
     path("customization/", include("customization.urls")),
+    path("realtime/", include("realtime.urls")),
     path("books/api/", include("books.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path("books/api/auth/token/", obtain_auth_token, name="api-token-auth"),

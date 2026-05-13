@@ -44,6 +44,8 @@ LOGIN_REDIRECT_URL = "/users/profile/"
 LOGOUT_REDIRECT_URL = "/users/login/"
 
 INSTALLED_APPS = [
+    "daphne",
+    "channels",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -60,7 +62,16 @@ INSTALLED_APPS = [
     "books",
     "testing",
     "customization",
+    "realtime",
 ]
+
+ASGI_APPLICATION = "my_site.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -129,7 +140,7 @@ LOGGING = {
             "level": "INFO",
             "propagate": True,
         },
-    "customization": {
+        "customization": {
             "handlers": ["customization_file"],
             "level": "INFO",
             "propagate": False,
