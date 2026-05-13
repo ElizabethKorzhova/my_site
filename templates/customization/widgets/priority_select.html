@@ -1,0 +1,13 @@
+<label for="{{ widget.attrs.id }}">Priority</label>
+<select name="{{ widget.name }}"
+        id="{{ widget.attrs.id }}"
+        class="form-select priority-select">
+    {% for group_name, options, index in widget.optgroups %}
+        {% for option in options %}
+            <option value="{{ option.value|stringformat:'s' }}"
+                    {% if option.selected %}selected{% endif %}>
+                {{ option.label }}
+            </option>
+        {% endfor %}
+    {% endfor %}
+</select>

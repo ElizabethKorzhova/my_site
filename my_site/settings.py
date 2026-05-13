@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "users",
     "books",
     "testing",
+    "customization",
 ]
 
 REST_FRAMEWORK = {
@@ -96,16 +97,30 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "users.middleware.AccessLogMiddleware",
     "users.middleware.ErrorHandlingMiddleware",
+    "customization.middleware.CustomHeaderMiddleware",
+    "customization.middleware.RequestMetricsMiddleware",
 ]
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "custom": {
+            "format": "{asctime} - {levelname} - {name} - {message}",
+            "style": "{",
+        },
+    },
     "handlers": {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
             "filename": "security.log",
+        },
+        "customization_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "customization.log",
+            "formatter": "custom",
         },
     },
     "loggers": {
@@ -113,6 +128,11 @@ LOGGING = {
             "handlers": ["file"],
             "level": "INFO",
             "propagate": True,
+        },
+    "customization": {
+            "handlers": ["customization_file"],
+            "level": "INFO",
+            "propagate": False,
         },
     },
 }
@@ -130,6 +150,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "customization.context_processors.global_tasks_data",
             ],
         },
     },
