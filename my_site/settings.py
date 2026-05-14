@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "testing",
     "customization",
     "realtime",
+    "session",
 ]
 
 ASGI_APPLICATION = "my_site.asgi.application"
@@ -110,7 +111,15 @@ MIDDLEWARE = [
     "users.middleware.ErrorHandlingMiddleware",
     "customization.middleware.CustomHeaderMiddleware",
     "customization.middleware.RequestMetricsMiddleware",
+    "session.middleware.AnonymousBookListCacheMiddleware",
 ]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+    }
+}
 
 LOGGING = {
     "version": 1,

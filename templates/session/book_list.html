@@ -1,0 +1,32 @@
+{% extends "session/base.html" %}
+{% block title %}Books{% endblock %}
+{% block content %}
+    <h3>Books</h3>
+    {% if execution_time %}
+        <p>Execution time: {{ execution_time }}</p>
+    {% endif %}
+    {% if query_count %}
+        <p>Queries count: {{ query_count }}</p>
+    {% endif %}
+    <ul>
+        {% for book in books %}
+            <li>
+                <h5>{{ book.title }}</h5>
+                <p>
+                    Author:
+                    {{ book.author.name|default:book.author }}
+                </p>
+                {% if book.reviews.all %}
+                    <ul>
+                        {% for review in book.reviews.all %}
+                            <li>
+                                {{ review.text }}
+                                ({{ review.rating }}/5)
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

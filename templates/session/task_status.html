@@ -1,0 +1,10 @@
+{% extends "session/base.html" %}
+{% block title %}Task Status{% endblock %}
+{% block content %}
+    <h3>Task status</h3>
+    <p>Task ID: {{ task_id }}</p>
+    <p>Status: {{ status }}</p>
+    {% if result %}
+        <p>Result: {{ result }}</p>
+    {% endif %}
+{% endblock %}
