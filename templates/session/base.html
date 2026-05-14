@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Session App{% endblock %}</title>
+</head>
+<body>
+<header>
+    <nav>
+    <a href="{% url 'session:login' %}">Login</a>
+    <a href="{% url 'session:books_cached' %}">Books</a>
+    <a href="{% url 'session:statistics' %}">Statistics</a>
+</nav>
+</header>
+<main>
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>

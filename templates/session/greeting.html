@@ -1,0 +1,16 @@
+{% extends "session/base.html" %}
+{% block title %}Greeting{% endblock %}
+{% block content %}
+    <h3>
+        Hello, {{ name }}!
+    </h3>
+    <p>
+        You are {{ age }} years old.
+    </p>
+    <form action="{% url 'session:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">
+            Logout
+        </button>
+    </form>
+{% endblock %}
